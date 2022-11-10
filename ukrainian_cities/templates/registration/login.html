@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load style_filter %}
+
+{% block title %} Log in {% endblock %}
+
+{% block header %} Log in {% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+
+                <div class="card-header">
+                    Log in
+                </div>
+
+                <div class="card-body">
+                    {% if not form.errors %}
+                        <div class="alert alert-info" role="alert">
+                            Please log in
+                        </div>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+
+                        {% include 'snippets/form_fields.html' with form=form %}
+
+                        <input type="hidden" name="next" value="{{ next }}"/>
+
+                        <div class="md-6 mt-4">
+                            <button 
+                                type="submit" 
+                                class="btn btn-primary" 
+                                style="width: 100%">
+                                Log in
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

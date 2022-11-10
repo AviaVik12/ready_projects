@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Oblasts{% endblock %}
+
+{% block header %}List of Oblasts(Provinces){% endblock %}
+
+{% block body %}
+<table class="table table-dark table-hover">
+    <tr class="table-dark">
+        <th>Oblast (Province)</th>
+    </tr>
+    {% for citizen in citizens %}
+    <tr>
+        <td>
+            {{ citizen.human.name }}
+        </td>
+        <td>
+            <ol>
+                {% for city in citizens.cities.all %}
+                <li>
+                    {{ city.name }}
+                </li>
+                {% endfor %}
+            </ol>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

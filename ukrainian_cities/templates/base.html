@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap_uc.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ routers.index }}">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ routers.cities }}">Cities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ routers.citizens }}">Administrative Divisions</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="nav-link active" aria-current='page'>
+                            |
+                        </span>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <span class="nav-link active" aria-current="page">
+                            Hello, {{ user.username }}
+                        </span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}" class="nav-link active" aria-current="page">
+                            Log out
+                        </a>
+                    </li>
+                    
+                {% else %}
+                    <li class="nav-item">
+                        <span class="nav-link active" aria-current='page'>
+                            |
+                        </span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="nav-link active" aria-current="page">
+                            Log In
+                        </a>
+                    </li>        
+                    
+                    <li class="nav-item">
+                        <a href="{% url 'create-user' %}" class="nav-link active" aria-current="page">
+                            Sign Up
+                        </a>
+                    </li> 
+                {% endif %}
+            </ul>
+        </nav>
+        <h1>{% block header %}{% endblock %}</h1>
+        {% block body %}{% endblock %}
+    </div>
+</body>
+</html>
+

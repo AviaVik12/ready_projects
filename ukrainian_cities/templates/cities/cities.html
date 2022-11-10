@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Cities {% endblock %}
+
+{% block header %}List of Ukrainian Cities{% endblock %}
+
+{% block body %}
+<form method="post" action="/cities/">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="city-name" class="form-label">City name</label>
+        <input type="text" class="form-control" id="city-name" name="name" placeholder="Pass city name">
+    </div>
+
+    <div class="mb-3">
+        <label for="city-population" class="form-label">Population</label>
+        <input type="number" class="form-control" id="city-population"
+               name="population" value="1000000" min="0" max="100000000">
+    </div>
+
+    <button type="submit" class="btn btn-outline-secondary">Add city</button>
+</form>
+
+<hr>
+
+<table class="table table-dark table-hover">
+    <tr>
+        <th>City name</th>
+        <th>Population</th>
+    </tr>
+
+    {% for city in cities %}
+    <tr>
+        <td>
+            <a href="{% url 'city-detail' name=city.name %}">
+                {{ city.name }}
+            </a>
+        </td>
+
+        <td>{{ city.population }}</td> 
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Cities {% endblock %}
+
+{% block header %}List of Ukrainian Cities{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="city-name" class="form-label">City name</label>
+        <input type="text" class="form-control" id="city-name" readonly
+               name="name" placeholder="Pass city name" value="{{ city.name }}">
+    </div>
+    <div class="mb-3">
+        <label for="city-population" class="form-label">Population</label>
+        <input type="number" class="form-control" id="city-population"
+               name="population" min="1" max="100000000" value={{ city.population }}>
+    </div>
+    <button type="submit" class="btn btn-outline-secondary">Update city</button>
+</form>
+<hr>
+<form method="post" action="delete/">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Delete city</button>
+</form>
+{% endblock %}

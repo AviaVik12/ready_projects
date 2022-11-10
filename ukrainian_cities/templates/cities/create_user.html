@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load style_filter %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block header %} Registration {% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+
+                <div class="card-header">
+                    Sign Up
+                </div>
+
+                <div class="card-body">
+                    {% if not form.errors %}
+                        <div class="alert alert-info" role="alert">
+                            Fill the registration form.
+                        </div>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'create-user' %}">
+                        {% csrf_token %}
+
+                        {% include 'snippets/form_fields.html' with form=form %}
+
+                        <div class="mt-4">
+                            <button 
+                                type="submit" 
+                                class="btn btn-primary" 
+                                style="width: 100%">
+                                Sign Up
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

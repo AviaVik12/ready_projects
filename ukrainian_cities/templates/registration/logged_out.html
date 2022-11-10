@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} You logged out {% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+
+                <div class="card-header">
+                    You logged out of your account
+                </div>
+
+                <div class="card-body">
+                    <p>You just logged out of you account. Hope to see you again!</p>
+                    
+                    <p>
+                        <a href="{% url 'login' %}">
+                            Go back
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
